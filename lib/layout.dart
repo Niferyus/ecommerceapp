@@ -20,17 +20,20 @@ class _LayoutState extends State<Layout> {
         title: const Text("BLOGCOM"),
       ),
       drawer: Drawer(
+        // backgroundColor: const Color.fromARGB(255, 190, 202, 223),
         child: ListView(
           children: [
             const DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
+                  // color: Colors.blue,
+                  ),
               child: Text("BLOGCOM"),
             ),
-            const Divider(),
-            Drawercontainer(const About(), context, "About"),
-            Drawercontainer(const Contact(), context, "Contact"),
+            // const Divider(),
+            Drawercontainer(
+                const About(), context, "About", Icons.article_rounded),
+            Drawercontainer(
+                const Contact(), context, "Contact", Icons.contact_page),
           ],
         ),
       ),
@@ -143,27 +146,27 @@ class DetailPage extends StatelessWidget {
 /**
  * 
  * 
- *  hello uykucu furkan
- * sadklsjdlkajslk jadkaskd alşsdkaslşdklşs
- * asdlşkadlşas alşsdkalşsdkşls
- * asdlşkasşldk
- * <b> asdasd </b>
+ *
+ * 
  * 
  */
-Widget Drawercontainer(Widget page, BuildContext context, String text) =>
+Widget Drawercontainer(
+        Widget page, BuildContext context, String text, IconData icon) =>
     InkWell(
       onTap: () => Navigator.push(
           context, MaterialPageRoute(builder: (context) => page)),
       child: Container(
           height: 50,
           margin: EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            border: Border.all(
-                color: Colors.black, width: 1, style: BorderStyle.solid),
-            borderRadius: BorderRadius.circular(20),
-            color: Color.fromARGB(255, 24, 142, 220),
-          ),
-          child: Row(
-            children: [Text(text)],
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Row(
+              children: [
+                Padding(padding: EdgeInsets.only(right: 10), child: Icon(icon)),
+                Text(
+                  text,
+                )
+              ],
+            ),
           )),
     );
