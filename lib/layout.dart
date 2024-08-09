@@ -1,3 +1,5 @@
+import 'package:blogcom/about.dart';
+import 'package:blogcom/contact.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,23 +20,19 @@ class _LayoutState extends State<Layout> {
         title: const Text("BLOGCOM"),
       ),
       drawer: Drawer(
-        child: ListView(children: [
-          const DrawerHeader(
+        child: ListView(
+          children: [
+            const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
-                border: Border(),
               ),
-              child: Text("BLOGCOM")),
-          ListTile(
-            title: Text("Menu 1"),
-          ),
-          ListTile(
-            title: Text("Menu 2"),
-          ),
-          ListTile(
-            title: Text("Menu 3"),
-          )
-        ]),
+              child: Text("BLOGCOM"),
+            ),
+            const Divider(),
+            Drawercontainer(const About(), context, "About"),
+            Drawercontainer(const Contact(), context, "Contact"),
+          ],
+        ),
       ),
       bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
@@ -66,6 +64,21 @@ class _LayoutState extends State<Layout> {
     );
   }
 }
+
+/**
+ * 
+ * 
+ * 
+ * bu benim özel containerim
+ * 
+ * bunda ahmet asdasd
+ * asdasdasdas
+ * 
+ * dasdasdas
+ * 
+ * 
+ * [hello]
+ */
 
 Widget containers(
   BuildContext context,
@@ -111,7 +124,8 @@ class DetailPage extends StatelessWidget {
   late Color clr;
   late IconData icon;
 
-  DetailPage({required this.heading, required this.clr, required this.icon});
+  DetailPage(
+      {required this.heading, this.clr = Colors.red, required this.icon});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,10 +140,30 @@ class DetailPage extends StatelessWidget {
   }
 }
 
-// Widget Drawercontainer(
-//   BuildContext context,
-//   String text,
-// ) => GestureDetector(
-//   // onTap: () => Navigator.push(context,MaterialPageRoute(builder: DetailPage(clr: Color,))),
-
-// )
+/**
+ * 
+ * 
+ *  hello uykucu furkan
+ * sadklsjdlkajslk jadkaskd alşsdkaslşdklşs
+ * asdlşkadlşas alşsdkalşsdkşls
+ * asdlşkasşldk
+ * <b> asdasd </b>
+ * 
+ */
+Widget Drawercontainer(Widget page, BuildContext context, String text) =>
+    InkWell(
+      onTap: () => Navigator.push(
+          context, MaterialPageRoute(builder: (context) => page)),
+      child: Container(
+          height: 50,
+          margin: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            border: Border.all(
+                color: Colors.black, width: 1, style: BorderStyle.solid),
+            borderRadius: BorderRadius.circular(20),
+            color: Color.fromARGB(255, 24, 142, 220),
+          ),
+          child: Row(
+            children: [Text(text)],
+          )),
+    );
