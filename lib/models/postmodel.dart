@@ -1,23 +1,23 @@
 import 'dart:convert';
 
-Welcome welcomeFromMap(String str) => Welcome.fromMap(json.decode(str));
+Postmodel welcomeFromMap(String str) => Postmodel.fromMap(json.decode(str));
 
-String welcomeToMap(Welcome data) => json.encode(data.toMap());
+String welcomeToMap(Postmodel data) => json.encode(data.toMap());
 
-class Welcome {
+class Postmodel {
   List<Post> posts;
   int total;
   int skip;
   int limit;
 
-  Welcome({
+  Postmodel({
     required this.posts,
     required this.total,
     required this.skip,
     required this.limit,
   });
 
-  factory Welcome.fromMap(Map<String, dynamic> json) => Welcome(
+  factory Postmodel.fromMap(Map<String, dynamic> json) => Postmodel(
         posts: List<Post>.from(json["posts"].map((x) => Post.fromMap(x))),
         total: json["total"],
         skip: json["skip"],

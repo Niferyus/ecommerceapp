@@ -1,5 +1,6 @@
 import 'package:blogcom/about.dart';
 import 'package:blogcom/contact.dart';
+import 'package:blogcom/posts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -93,8 +94,9 @@ Widget containers(
         onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) =>
-                    DetailPage(heading: title, clr: clr, icon: icon))),
+              builder: (context) => Posts(),
+              // DetailPage(heading: title, clr: clr, icon: icon)
+            )),
         child: Container(
             alignment: Alignment.center,
             margin: EdgeInsets.all(10),
