@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-import 'dart:ffi';
+// import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
@@ -16,14 +16,14 @@ class Productmodel {
       required this.total});
 
   factory Productmodel.fromMap(Map<String, dynamic> json) => Productmodel(
-      products: List<Product>.from(
-          json["products"].map((x) => Productmodel.fromMap(x))),
+      products:
+          List<Product>.from(json["products"].map((x) => Product.fromMap(x))),
       limit: json["limit"],
       skip: json["skip"],
       total: json["total"]);
 
   Map<String, dynamic> toMap() => {
-        "posts": List<dynamic>.from(products.map((x) => x.toMap())),
+        "products": List<dynamic>.from(products.map((x) => x.toMap())),
         "total": total,
         "skip": skip,
         "limit": limit,
@@ -34,7 +34,7 @@ class Product {
   int id;
   String title;
   String category;
-  Double price;
+  double price;
   int stock;
   String sku;
   String thumbnail;
@@ -60,7 +60,7 @@ class Product {
   Map<String, dynamic> toMap() => {
         "id": id,
         "title": title,
-        "categoru": category,
+        "category": category,
         "price": price,
         "stock": stock,
         "sku": sku,

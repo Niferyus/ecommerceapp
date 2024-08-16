@@ -46,30 +46,6 @@ class _PostsState extends State<Posts> {
     });
   }
 
-  void showSearchDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('Search Posts'),
-          content: TextField(
-            onChanged: (value) {
-              filterPosts(value);
-            },
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Close'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

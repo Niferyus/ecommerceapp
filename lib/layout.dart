@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:blogcom/about.dart';
 import 'package:blogcom/contact.dart';
 import 'package:blogcom/posts.dart';
+import 'package:blogcom/productdetail.dart';
+import 'package:blogcom/products.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +59,7 @@ class _LayoutState extends State<Layout> {
         children: [
           containers(context, Icons.book, "Posts", Colors.red, Posts()),
           containers(context, CupertinoIcons.arrow_turn_left_up, "OK",
-              Colors.green, null),
+              Colors.green, Products()),
           containers(context, CupertinoIcons.burst, "Burst", Colors.blue, null),
           containers(context, CupertinoIcons.app_badge_fill, "APP",
               const Color.fromARGB(255, 242, 145, 177), null),
