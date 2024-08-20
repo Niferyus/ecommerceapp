@@ -2,7 +2,6 @@
 import 'package:blogcom/about.dart';
 import 'package:blogcom/contact.dart';
 import 'package:blogcom/posts.dart';
-import 'package:blogcom/productdetail.dart';
 import 'package:blogcom/products.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -134,6 +133,7 @@ Widget containers(
       ),
     );
 
+// ignore: must_be_immutable
 class DetailPage extends StatelessWidget {
   late String heading;
   late Color clr;

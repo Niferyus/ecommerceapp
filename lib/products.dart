@@ -116,7 +116,7 @@ Widget productContainer(BuildContext context, Product product) {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Productdetail(),
+          builder: (context) => Productdetail(product.id),
         ),
       ),
       child: Container(
