@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 ProductDetailModel productDetailModelFromMap(String str) =>
@@ -17,7 +16,6 @@ class ProductDetailModel {
   double rating;
   int stock;
   List<String> tags;
-  String brand;
   String sku;
   int weight;
   Dimensions dimensions;
@@ -41,7 +39,6 @@ class ProductDetailModel {
     required this.rating,
     required this.stock,
     required this.tags,
-    required this.brand,
     required this.sku,
     required this.weight,
     required this.dimensions,
@@ -67,7 +64,6 @@ class ProductDetailModel {
         rating: json["rating"]?.toDouble(),
         stock: json["stock"],
         tags: List<String>.from(json["tags"].map((x) => x)),
-        brand: json["brand"],
         sku: json["sku"],
         weight: json["weight"],
         dimensions: Dimensions.fromMap(json["dimensions"]),
@@ -93,7 +89,6 @@ class ProductDetailModel {
         "rating": rating,
         "stock": stock,
         "tags": List<dynamic>.from(tags.map((x) => x)),
-        "brand": brand,
         "sku": sku,
         "weight": weight,
         "dimensions": dimensions.toMap(),

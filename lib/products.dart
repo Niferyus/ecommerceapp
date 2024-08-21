@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors
-import 'dart:ui';
 import 'package:blogcom/models/productmodel.dart';
 import 'package:blogcom/productdetail.dart';
 import 'package:blogcom/service/product_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Products extends StatefulWidget {
   const Products({super.key});
@@ -44,6 +42,7 @@ class _ProductsState extends State<Products> {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Products"),
+        backgroundColor: Color.fromARGB(153, 203, 21, 21),
       ),
       body: isLoaded
           ? GridView.builder(
@@ -58,94 +57,81 @@ class _ProductsState extends State<Products> {
     );
   }
 
-  Container productContainerr(Product product) {
-    return Container(
-      width: 600,
-      // height: 600,
-      margin: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-          border: Border.all(color: Colors.red),
-          color: Colors.amber),
-      // color: Colors.amber,
-      child: Column(
-        children: [
-          Text(product.title),
-          Text(product.category),
-          Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50), color: Colors.red),
-            child: Image.network(
-              product.thumbnail,
-              fit: BoxFit.cover,
-              width: 100,
-              height: 100,
-            ),
+  Widget productContainer(BuildContext context, Product product) {
+    return Padding(
+      padding: const EdgeInsets.all(8),
+      child: GestureDetector(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Productdetail(product.id),
           ),
-          SizedBox(
-            height: 20,
-          ),
-          Container(
+        ),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.grey.withOpacity(0.2)),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 10,
+                spreadRadius: 2,
+                offset: Offset(5, 5),
+              ),
+            ],
             color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  margin: EdgeInsets.all(5),
-                  child: Text("Price: " + product.price.toString() + " \$"),
-                ),
-                Text("Stok: " + product.stock.toString()),
-              ],
-            ),
           ),
-          Container(
-              color: Colors.white,
-              width: double.infinity,
-              child: Text(product.sku),
-              alignment: Alignment.center),
-        ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                child: Image.network(
+                  product.thumbnail,
+                  height: 160,
+                  width: double.infinity,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2),
+                child: Text(
+                  product.title,
+                  maxLines: 1,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Text(
+                  product.category,
+                  style: TextStyle(
+                      color: Colors.grey, fontStyle: FontStyle.italic),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "${product.price} \$",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                    ),
+                    Text(
+                      "Stok: ${product.stock}",
+                      style: TextStyle(color: Colors.green),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
-}
-
-Widget productContainer(BuildContext context, Product product) {
-  return Padding(
-    padding: EdgeInsets.all(10),
-    child: GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Productdetail(product.id),
-        ),
-      ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          border: Border.all(color: Color.fromARGB(153, 247, 205, 205)),
-          boxShadow: const [
-            BoxShadow(offset: Offset.infinite, color: Colors.black45)
-          ],
-        ),
-        child: Column(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-              child: Image.network(
-                product.thumbnail,
-                fit: BoxFit.cover,
-                height: 150,
-              ),
-            ),
-            Text(product.title),
-            Text(product.category),
-            Text(product.price.toString())
-          ],
-        ),
-      ),
-    ),
-  );
 }
