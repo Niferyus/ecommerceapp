@@ -88,7 +88,7 @@ class _ProductsState extends State<Products> {
                 borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                 child: Image.network(
                   product.thumbnail,
-                  height: 160,
+                  height: 150,
                   width: double.infinity,
                 ),
               ),

@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 import 'package:blogcom/about.dart';
 import 'package:blogcom/contact.dart';
+import 'package:blogcom/login.dart';
 import 'package:blogcom/posts.dart';
 import 'package:blogcom/products.dart';
+import 'package:blogcom/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -57,9 +59,10 @@ class _LayoutState extends State<Layout> {
         crossAxisCount: 2,
         children: [
           containers(context, Icons.book, "Posts", Colors.red, Posts()),
-          containers(context, CupertinoIcons.arrow_turn_left_up, "OK",
-              Colors.green, Products()),
-          containers(context, CupertinoIcons.burst, "Burst", Colors.blue, null),
+          containers(context, Icons.shopping_cart, "Products", Colors.green,
+              Products()),
+          containers(
+              context, CupertinoIcons.burst, "Burst", Colors.blue, Profile()),
           containers(context, CupertinoIcons.app_badge_fill, "APP",
               const Color.fromARGB(255, 242, 145, 177), null),
           containers(
@@ -86,50 +89,53 @@ Widget containers(
   Color clr,
   Widget? destination,
 ) =>
-    InkWell(
-      onTap: () {
-        if (destination != null) {
-          Navigator.push(
+    Padding(
+      padding: EdgeInsets.all(8),
+      child: InkWell(
+        onTap: () {
+          if (destination != null) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => destination,
+                ));
+          } else {
+            Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => destination,
-              ));
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) =>
-                  DetailPage(heading: title, clr: clr, icon: icon),
-            ),
-          );
-        }
-      },
-      child: Container(
-        alignment: Alignment.center,
-        margin: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: clr,
-            borderRadius: BorderRadius.circular(30),
-            boxShadow: const [
-              BoxShadow(color: Colors.black38, blurRadius: 20),
-            ],
-            border: Border.all(
-                color: Colors.black54, width: 1, style: BorderStyle.solid)),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 48,
+                builder: (context) =>
+                    DetailPage(heading: title, clr: clr, icon: icon),
               ),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 30,
+            );
+          }
+        },
+        child: Container(
+          alignment: Alignment.center,
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: clr,
+              borderRadius: BorderRadius.circular(30),
+              boxShadow: const [
+                BoxShadow(color: Colors.black38, blurRadius: 20),
+              ],
+              border: Border.all(
+                  color: Colors.black54, width: 1, style: BorderStyle.solid)),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  icon,
+                  size: 48,
                 ),
-              )
-            ]),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
+                )
+              ]),
+        ),
       ),
     );
 
