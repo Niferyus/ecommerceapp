@@ -1,4 +1,4 @@
-# blogcom
+ECommerceApp
 
 A new Flutter project.
 
